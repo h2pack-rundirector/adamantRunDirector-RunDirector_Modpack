@@ -40,11 +40,11 @@ local function rebuildFramework()
         return false
     end
 
-    assert(Framework and type(Framework.tryInit) == "function",
+    assert(Framework and type(Framework.createPack) == "function",
         "adamant-RunDirector_Core: adamant-ModpackFramework is not loaded")
 
     rebuildInProgress = true
-    local ok = Framework.tryInit(PACK_ID, WINDOW_TITLE, config, #config.Profiles, DEFAULT_PROFILES, FRAMEWORK_OPTS)
+    local ok = Framework.createPack(PACK_ID, WINDOW_TITLE, config, #config.Profiles, DEFAULT_PROFILES, FRAMEWORK_OPTS)
     rebuildInProgress = false
 
     if not ok then
@@ -61,9 +61,9 @@ mods.on_all_mods_loaded(function()
 end)
 
 local function init()
-    assert(Framework and type(Framework.tryInit) == "function",
+    assert(Framework and type(Framework.createPack) == "function",
         "adamant-RunDirector_Core: adamant-ModpackFramework is not loaded")
-    local ok = Framework.tryInit(PACK_ID, WINDOW_TITLE, config, #config.Profiles, DEFAULT_PROFILES, FRAMEWORK_OPTS)
+    local ok = Framework.createPack(PACK_ID, WINDOW_TITLE, config, #config.Profiles, DEFAULT_PROFILES, FRAMEWORK_OPTS)
     frameworkInitialized = ok == true
 end
 
