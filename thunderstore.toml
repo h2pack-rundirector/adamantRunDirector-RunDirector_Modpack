@@ -3,11 +3,11 @@ schemaVersion = "0.0.1"
 
 
 [package]
-namespace = "adamant"
+namespace = "adamantRunDirector"
 name = "RunDirector_Modpack"
 versionNumber = "1.0.0"
 description = "Run Director modpack package."
-websiteUrl = "https://github.com/h2pack-rundirector/adamant-RunDirector_Modpack"
+websiteUrl = "https://github.com/h2pack-rundirector/adamantRunDirector-RunDirector_Modpack"
 containsNsfwContent = false
 
 [package.dependencies]
@@ -20,9 +20,9 @@ adamant-ModpackLib = "1.0.0"
 adamant-ModpackFramework = "1.0.0"
 
 # -- submodules-start --
-adamant-RunDirector_BiomeControl = "0.0.1"
-adamant-RunDirector_BoonBans = "0.0.1"
-adamant-RunDirector_GodPool = "0.0.1"
+adamantRunDirector-BiomeControl = "0.0.1"
+adamantRunDirector-BoonBans = "0.0.1"
+adamantRunDirector-GodPool = "0.0.1"
 # -- submodules-end --
 
 [build]

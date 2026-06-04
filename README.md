@@ -21,9 +21,9 @@ Together, these modules let you steer:
 
 ## Included Modules
 
-- [Biome Control](https://thunderstore.io/c/hades-ii/p/adamant/RunDirector_BiomeControl)
-- [God Pool](https://thunderstore.io/c/hades-ii/p/adamant/RunDirector_GodPool)
-- [Boon Bans](https://thunderstore.io/c/hades-ii/p/adamant/RunDirector_BoonBans)
+- [Biome Control](https://thunderstore.io/c/hades-ii/p/adamantRunDirector/BiomeControl)
+- [God Pool](https://thunderstore.io/c/hades-ii/p/adamantRunDirector/GodPool)
+- [Boon Bans](https://thunderstore.io/c/hades-ii/p/adamantRunDirector/BoonBans)
 
 ## How To Use
 
