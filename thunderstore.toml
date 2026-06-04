@@ -4,10 +4,10 @@ schemaVersion = "0.0.1"
 
 [package]
 namespace = "adamant"
-name = "RunDirector_Core"
+name = "RunDirector_Modpack"
 versionNumber = "1.0.0"
-description = "Run Director modpack coordinator."
-websiteUrl = "https://github.com/h2pack-rundirector/adamant-RunDirector_Core"
+description = "Run Director modpack package."
+websiteUrl = "https://github.com/h2pack-rundirector/adamant-RunDirector_Modpack"
 containsNsfwContent = false
 
 [package.dependencies]
