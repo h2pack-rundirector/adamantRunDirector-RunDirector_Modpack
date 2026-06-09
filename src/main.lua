@@ -18,6 +18,7 @@ local reload  = mods['SGG_Modding-ReLoad']
 ---@module "adamant-ModpackFramework"
 ---@type AdamantModpackFramework
 Framework = mods["adamant-ModpackFramework"]
+assert(Framework, "adamantRunDirector-RunDirector_Modpack: adamant-ModpackFramework is not loaded")
 
 local config = chalk.auto('config.lua')
 
@@ -30,21 +31,35 @@ local FRAMEWORK_OPTS = {
         "BoonBans",
         "BiomeControl",
     },
-    hideHashMarker = true,
+    -- hideHashMarker = true,
 }
 local frameworkInitialized = false
+local frameworkCreationFailed = false
 local rebuildInProgress = false
+
+local function ensureFrameworkPack()
+    if frameworkInitialized then
+        return true
+    end
+    if frameworkCreationFailed then
+        return false
+    end
+
+    local ok = Framework.createPack(PACK_ID, config, #config.Profiles, DEFAULT_PROFILES, FRAMEWORK_OPTS)
+    frameworkInitialized = ok == true
+    frameworkCreationFailed = not frameworkInitialized
+    return frameworkInitialized
+end
 
 local function rebuildFramework()
     if rebuildInProgress or not frameworkInitialized then
         return false
     end
 
-    assert(Framework and type(Framework.createPack) == "function",
-        "adamantRunDirector-RunDirector_Modpack: adamant-ModpackFramework is not loaded")
-
     rebuildInProgress = true
-    local ok = Framework.createPack(PACK_ID, config, #config.Profiles, DEFAULT_PROFILES, FRAMEWORK_OPTS)
+    frameworkInitialized = false
+    frameworkCreationFailed = false
+    local ok = ensureFrameworkPack()
     rebuildInProgress = false
 
     if not ok then
@@ -55,26 +70,23 @@ local function rebuildFramework()
 end
 
 mods.on_all_mods_loaded(function()
-    assert(Framework and type(Framework.registerCoordinator) == "function",
-        "adamantRunDirector-RunDirector_Modpack: adamant-ModpackFramework is not loaded")
     Framework.registerCoordinator(PACK_ID, PACK_DISPLAY_NAME, config, rebuildFramework)
 end)
 
 local function init()
-    assert(Framework and type(Framework.createPack) == "function",
-        "adamantRunDirector-RunDirector_Modpack: adamant-ModpackFramework is not loaded")
-    local ok = Framework.createPack(PACK_ID, config, #config.Profiles, DEFAULT_PROFILES, FRAMEWORK_OPTS)
-    frameworkInitialized = ok == true
+    frameworkInitialized = false
+    frameworkCreationFailed = false
 end
 
 local loader = reload.auto_single()
 
 local function registerGui()
-    assert(Framework and type(Framework.createGuiCallbacks) == "function",
-        "adamantRunDirector-RunDirector_Modpack: adamant-ModpackFramework is not loaded")
     local callbacks = Framework.createGuiCallbacks(PACK_ID)
     rom.gui.add_imgui(callbacks.render)
-    rom.gui.add_always_draw_imgui(callbacks.alwaysDraw)
+    rom.gui.add_always_draw_imgui(function()
+        ensureFrameworkPack()
+        callbacks.alwaysDraw()
+    end)
     rom.gui.add_to_menu_bar(callbacks.menuBar)
 end
 
