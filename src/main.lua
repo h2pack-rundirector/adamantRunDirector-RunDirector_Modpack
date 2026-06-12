@@ -1,6 +1,4 @@
 -- =============================================================================
--- adamant-ModpackRunDirectorCore: Modpack Coordinator
--- =============================================================================
 -- luacheck: globals Modpack
 -- Thin coordinator: wires globals, owns config/setup, delegates everything
 -- else to adamant-ModpackLib.modpack.
