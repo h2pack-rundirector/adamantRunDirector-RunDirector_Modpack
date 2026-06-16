@@ -22,6 +22,7 @@ adamant-ModpackLib = "1.0.0"
 adamantRunDirector-BiomeControl = "0.0.1"
 adamantRunDirector-BoonBans = "0.0.1"
 adamantRunDirector-GodPool = "0.0.1"
+adamantRunDirector-Run_Planner = "0.0.1"
 # -- submodules-end --
 
 [build]
